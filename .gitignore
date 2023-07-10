@@ -131,4 +131,5 @@ dmypy.json
 # Custom
 tests
 .vscode
+.history
 poetry.lock

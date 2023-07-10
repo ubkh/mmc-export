@@ -57,13 +57,13 @@ class ResourceAPI(object):
             if path.suffix in (".jar", ".disabled"):
                 with ZipFile(path) as modArchive:
                     filenames = [Path(file).name for file in modArchive.namelist()]
-                    if "fabric.mod.json" in filenames:
-                        data = modArchive.read("fabric.mod.json")
-                        meta = parse_json(data, strict=False)
-                    elif "pack.mcmeta" in filenames:
+                    if "pack.mcmeta" in filenames:
                         data = modArchive.read("pack.mcmeta")
                         json = parse_json(data, strict=False)
                         meta['name'] = json['pack']['description']
+                    elif "fabric.mod.json" in filenames:
+                        data = modArchive.read("fabric.mod.json")
+                        meta = parse_json(data, strict=False)
                     
 
             resource = Resource(meta['name'])
